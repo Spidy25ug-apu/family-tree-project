@@ -38,8 +38,10 @@ void read_person_info(const char *role, char *name_out, int *age_out) {
 
     printf("Enter age for %s: ", role);
 
-    if (scanf("%d", age_out) != 1) {
-        printf("Invalid age.\n");
+    if (scanf("%d", age_out) != 1 ||
+        *age_out < 0 ||
+        *age_out > 150) {
+        printf("Invalid age. Please enter an age between 0 and 150.\n");
         exit(1);
     }
 
@@ -121,6 +123,7 @@ int main(void) {
     printf("All seven family members entered successfully!\n");
 
     print_family_relationships(people[6]);
+
     free_family_tree(people, 7);
 
     return 0;
